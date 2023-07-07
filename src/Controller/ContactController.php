@@ -10,7 +10,6 @@ class ContactController extends AbstractController
     #[Route('/', name: 'contact')]
     public function index(): Response
     {
-
         return $this->render('contact\index.html.twig');
     }
 }
