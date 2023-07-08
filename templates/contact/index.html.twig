@@ -3,9 +3,14 @@
 {% block body %}
 
 <div class="container">
-<h1>Kapcsolat</h1>
-<p>Kérdés esetén nyugodtan keresse kollégáinkat a következő űrlap segítségével:</p>
-{{ form(form) }}
+    <h1>Kapcsolat</h1>
+    <p>Kérdés esetén nyugodtan keresse kollégáinkat a következő űrlap segítségével:</p>
+    {% for message in app.flashes('success') %}
+        <div class="alert alert-success">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {{ form(form) }}
 </div>
 
 {% endblock %}

@@ -1,18 +1,19 @@
 <?php
 namespace App\Controller;
 
+use App\Entity\Messages;
+use App\Form\ContactFormType;
+use App\Repository\MessagesRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\FormError;
-use App\Entity\Messages;
-use App\Form\ContactFormType;
 
 class ContactController extends AbstractController
 {
     #[Route('/', name: 'contact')]
-    public function index(Request $request): Response
+    public function index(Request $request, MessagesRepository $messagesRepository): Response
     {
         $message = new Messages();
 
@@ -26,7 +27,10 @@ class ContactController extends AbstractController
         {
             if ($form->isValid())
             {
-                $contactForm = $form->getData();
+                $messagesRepository->save($message, true);
+                $this->addFlash('success', 'Köszönjük szépen a kérdésedet.
+                Válaszunkkal hamarosan keresünk a megadott e-mail címen.');
+                return $this->redirectToRoute('contact');
             }else{
                 $form->addError(new FormError('Hiba! Kérjük töltsd ki az összes mezőt!'));
             }
