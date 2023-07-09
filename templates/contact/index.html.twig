@@ -2,8 +2,9 @@
 {% block title %}Kapcsolatfelvételi űrlap{% endblock %}
 {% block body %}
 
-<div class="container">
+<div class="container mt-5 w-75">
     <h1>Kapcsolat</h1>
+    <hr>
     <p>Kérdés esetén nyugodtan keresse kollégáinkat a következő űrlap segítségével:</p>
     {% for message in app.flashes('success') %}
         <div class="alert alert-success">

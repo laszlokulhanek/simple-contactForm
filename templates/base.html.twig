@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ app.request.locale }}">
-
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -15,11 +14,12 @@
 
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-
     <body>
+        {% block navbar %}
+            {% include 'navbar.html.twig' %}
+        {% endblock navbar %}
         {% block body %}
 
         {% endblock %}
     </body>
-
 </html>
